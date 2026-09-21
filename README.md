@@ -54,4 +54,4 @@ Conçu pour les supermarchés et grands magasins, Assist-Bot permet aux utilisat
 
 ## 📝 Licence
 
-Projet distribué sous la licence **MIT**.
+Projet 2 ème année Electronique Systèmes Informatique et Intelligence Artificielle à l'ISPM
