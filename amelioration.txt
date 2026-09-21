@@ -1,0 +1,10 @@
+- panier --> detail --> retour --> panier
+- panier ampiana option "categorie" et "recherche"
+- rehefa mi-ajoute produit ka efa misy ao anaty panier dia incrementer-na fotsiny ny isany
+- categorie rehefa ovaina dia iny no mipoitra eo amin'ny place-n'ny "categorie"
+- actualisation dans panier (JavaScript by Andry) fa tsy voatery JavaScript
+- recherche via categorie ou prix aussi (pas seulement par le nom  du produit)
+- Logo cliqué renvois vers la page d'acceuil par defaut
+- Si on clique sur "ajouter" alors il y aura juste un message qui dit "produit ajouté dans le panier" mais pas que le client va être redirigé vers l'interface panier
+- Sur les blocs de produit dans acceuil il faut ajouter : Quantiée en stock, Précision du nombre de produit à ajouter
+- code PHP POO

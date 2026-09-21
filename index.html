@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle du robot</title>
+    <style>
+        #erreur {
+            color: #b00020;
+            font-weight: bold;
+            background: #fdecea;
+            border: 1px solid #b00020;
+            border-radius: 4px;
+            padding: 8px 12px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Panneau de controle du robot</h1>
+
+    <button onclick="demarrerSuivi()">Start (mode suivi)</button>
+    <button onclick="guider()">Guider (mode guide)</button>
+    <button onclick="arreter()">Stop (mode none)</button>
+    <button onclick="aligner()">Aligner la grille</button>
+    <button onclick="calibrer()">Calibrer le QMC</button>
+
+    <p id="erreur"></p>
+    <p>Mode actuel : <strong id="mode">...</strong></p>
+    <p>Phase d'avancement : <strong id="phase">...</strong></p>
+    <p>Position actuelle : x = <strong id="posX">...</strong>, y = <strong id="posY">...</strong></p>
+    <p id="message"></p>
+
+    <script>
+        function demarrerSuivi() {
+            fetch("changer_mode.php?valeur=suivi", { method: "POST" })
+                .then(r => r.text())
+                .then(msg => document.getElementById("message").innerText = msg);
+        }
+
+        function guider() {
+            const destination = prompt("Destination (A a I) pour test :", "B");
+            if (!destination) return;
+            const formData = new FormData();
+            formData.append("destination", destination.toUpperCase());
+            fetch("guider.php", { method: "POST", body: formData })
+                .then(r => r.text())
+                .then(msg => document.getElementById("message").innerText = msg);
+        }
+
+        function arreter() {
+            fetch("changer_mode.php?valeur=none", { method: "POST" })
+                .then(r => r.text())
+                .then(msg => document.getElementById("message").innerText = msg);
+        }
+
+        function aligner() {
+            fetch("aligner.php", { method: "POST" })
+                .then(r => r.text())
+                .then(msg => document.getElementById("message").innerText = msg);
+        }
+
+        function calibrer() {
+            fetch("calibrer.php", { method: "POST" })
+                .then(r => r.text())
+                .then(msg => document.getElementById("message").innerText = msg);
+        }
+
+        function actualiserEtat() {
+            fetch("voir_etat.php")
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById("mode").innerText  = data.mode  ?? "inconnu";
+                    document.getElementById("phase").innerText = data.phase ?? "inconnu";
+                });
+        }
+
+        function actualiserPosition() {
+            fetch("voir_position.php")
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById("posX").innerText = data.x;
+                    document.getElementById("posY").innerText = data.y;
+                });
+        }
+
+        function actualiserErreur() {
+            fetch("voir_erreur.php")
+                .then(r => r.json())
+                .then(data => {
+                    const el = document.getElementById("erreur");
+                    if (data && data.code) {
+                        el.innerText = "Erreur : " + data.code + " — " + data.detail;
+                        el.style.display = "block";
+                    } else {
+                        el.style.display = "none";
+                    }
+                })
+                .catch(() => { /* silencieux : pas d'erreur a afficher */ });
+        }
+
+        function actualiser() {
+            actualiserEtat();
+            actualiserPosition();
+            actualiserErreur();
+        }
+
+        setInterval(actualiser, 2000);
+        actualiser();
+    </script>
+
+</body>
+</html>

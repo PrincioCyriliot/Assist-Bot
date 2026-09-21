@@ -1,0 +1,339 @@
+:root{
+    --ink:#17212b;
+    --muted:#77838b;
+    --line:#e1e7ea;
+    --accent:#2d8fa3;
+    --bg:#f5f7f8;
+    --transpt:hwb(180 96% 3% / 0.299);
+}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0
+}
+body{
+    font-family:'DM Sans',Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink)
+}
+a{
+    text-decoration:none
+}
+.topbar{
+    height:78px;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 clamp(20px,5vw,72px);
+    position:sticky;
+    top:0;
+    z-index:50
+}
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    color:var(--ink)
+}
+.brand strong{
+    font-family:Manrope;
+    font-size:20px;
+    display:block
+}
+.brand small{
+    display:block;
+    color:#89949b;
+    font-size:10px;
+    letter-spacing:1.7px;
+    text-transform:uppercase
+}
+.logo-wrap{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:#111;
+    overflow:hidden
+}
+.logo-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:contain
+}
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:8px
+}
+.nav-link,.cart-link{
+    padding:10px 14px;
+    border-radius:10px;
+    color:#64717a;
+    font-size:13px;
+    font-weight:700
+}
+.nav-link:hover{
+    background:#f1f4f5;
+    color:var(--ink)
+}
+.nav-link.active{
+    background:#eef4f5;
+    color:var(--accent)
+}
+.cart-link{
+    background:var(--ink);
+    color:#fff
+}
+.active-cart{
+    box-shadow:0 5px 15px rgba(23,33,43,.16)
+}
+.cart-count{
+    display:inline-grid;
+    place-items:center;
+    min-width:20px;
+    height:20px;
+    border-radius:50%;
+    background:#fff;
+    color:var(--ink);
+    margin-left:5px;
+    font-size:10px
+}
+.invoice-page{
+    width:min(900px,94%);
+    margin:45px auto 70px
+}
+.invoice{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:38px;
+    box-shadow:0 18px 50px rgba(23,33,43,.07)
+}
+.invoice:hover{
+    border-color:#d8e0e4
+}
+.invoice-head{
+    display:flex;
+    justify-content:space-between;
+    gap:25px;
+    padding-bottom:28px;
+    border-bottom:1px solid var(--line)
+}
+.invoice{
+    background-image: url('image/fond-papier.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: #f8f4ed;
+    border: 1px solid #d4cdbf;
+    border-radius: 12px;
+    padding: 38px;
+    box-shadow: 
+        0 1px 2px rgba(0,0,0,0.05),
+        0 4px 16px rgba(0,0,0,0.06),
+        0 8px 40px rgba(0,0,0,0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Texture de papier avec image en fond */
+.invoice::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-size: 50%;              
+    background-position: center; 
+    opacity: 0.6;
+    background-repeat: no-repeat;  
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.invoice > * {
+    position: relative;
+    z-index: 1;
+}
+.invoice:hover{
+    border-color: #c8bfae;
+}
+.eyebrow{
+    font-size:10px;
+    letter-spacing:2px;
+    color:#2b7e8d;
+    font-weight:800
+}
+.invoice h1{
+    font-family:Manrope;
+    font-size:42px;
+    letter-spacing:-1.5px;
+    margin:5px 0
+}
+.invoice-head p{
+    color:var(--muted);
+    font-size:13px
+}
+.invoice-logo{
+    text-align:right
+}
+.invoice-logo img{
+    width:110px;
+    height:82px;
+    object-fit:contain;
+    display:block;
+    margin-left:auto
+}.invoice-logo span{
+    display:block;
+    color:#89949b;
+    font-size:10px;
+    margin-top:5px
+}
+.invoice-meta{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    padding:22px 0
+}
+.invoice-meta div{
+    background:var(--transpt);
+    border-radius:12px;
+    padding:13px
+}
+.invoice-meta small{
+    display:block;
+    color:var(--ink);
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:1px
+}
+.invoice-meta b{
+    display:block;
+    font-size:20px;
+    margin-top:4px
+}
+.invoice table{
+    width:100%;
+    border-collapse:collapse
+}
+.invoice th{
+    text-align:left;
+    background:var(--transpt);
+    color:var(--ink);
+    padding:12px;
+    font-size:15px;
+    text-transform:uppercase;
+    letter-spacing:.7px
+}
+.invoice th:first-child{
+    border-radius:8px 0 0 8px
+}
+.invoice th:last-child{
+    border-radius:0 8px 8px 0
+}
+.invoice td{
+    padding:14px 12px;
+    border-bottom:1px solid #edf0f2;
+    font-size:12px
+}
+.invoice td:not(:first-child),.invoice th:not(:first-child){
+    text-align:right
+}
+.invoice-total{
+    display:flex;
+    justify-content:flex-end;
+    gap:35px;
+    align-items:center;
+    padding:23px 12px;
+    font-size:14px
+}
+.invoice-total strong{
+    font-family:Manrope;
+    font-size:25px
+}
+.invoice-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px
+}
+.btn-primary,.btn-secondary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    padding:11px 17px;
+    border-radius:10px;
+    font-size:12px;
+    font-weight:800
+}
+.btn-primary{
+    background:var(--ink);
+    color:#fff
+}
+.btn-primary:hover{
+    background:var(--accent)
+}
+.btn-secondary{
+    background:#eef3f4;
+    color:#41646c
+}
+.btn-secondary:hover{
+    background:#dfecee;
+    color:var(--accent)
+}
+.invoice-empty{
+    text-align:center;
+    padding:65px 10px
+}
+.invoice-empty h2{
+    font-family:Manrope;
+    margin-bottom:7px
+}
+.invoice-empty p{
+    color:var(--muted);
+    margin-bottom:20px
+}
+footer{
+    border-top:1px solid var(--line);
+    padding:25px 5%;
+    text-align:center;
+    color:#98a2a8;
+    font-size:11px;
+    letter-spacing:.4px
+}
+footer span{
+    color:#54636b;
+    font-weight:800
+}
+@media(max-width:600px){
+    .nav-link{
+        display:none
+    }    
+    .invoice{
+        padding:22px
+    }
+    .invoice-head{
+        flex-direction:column
+    }
+    .invoice-logo{
+        text-align:left
+    }
+    .invoice-logo img{
+        margin-left:0
+    }
+    .invoice-meta{
+        grid-template-columns:1fr
+    }
+    .invoice{
+        overflow:auto
+    }
+    .invoice table{
+        min-width:600px
+    }
+    .invoice-actions{
+        justify-content:stretch
+    }
+    .btn-primary,.btn-secondary{
+        flex:1;text-align:center
+    }
+}
